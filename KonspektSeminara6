@@ -1,0 +1,256 @@
+ДЗ
+Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+
+0, 7, 8, -2, -2 -> 2
+
+1, -7, 567, 89, 223-> 3
+
+Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+
+b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
+
+
+
+
+
+
+// Задача 1: Напишите программу, которая перевернёт одномерный массив
+// (последний элемент будет на первом месте, а первый - на последнем и т.д.)
+// [1 2 3 4 5] -> [5 4 3 2 1]
+// [6 7 3 6] -> [6 3 7 6]
+
+int ReadInt(string message)
+{
+System.Console.Write(message);
+return Convert.ToInt32(Console.ReadLine());
+}
+
+double[] GenerateArray(int len, int minLimit, int maxLimit)
+{
+double[] answer = new double[len];
+Random rnd = new Random();
+for (int i = 0; i < answer.Length; i++)
+{
+answer[i] = Math.Round(rnd.Next(minLimit, maxLimit) + rnd.NextDouble(), 4); // Метод *Math.Round* округляет до ближайшего заданного после зпт (, 4). *rnd* - случайные числа (Random), rnd.Next целые от и до, rnd.NextDouble - после зпт.
+
+}
+
+return answer;
+}
+
+void PrintArrayDouble(double[] array)
+{
+foreach (double item in array)    // foreach - цикл котоый перебирает все элементы (item) массива (или какой то коллекции)
+{
+System.Console.Write($"{item:F2}\t"); // item:F2 - округлили элементы массива до 2 знаков после зпт (хотя рандом выдал округление до 4 после зпт,  \t - это отделили табом один итем от другого
+}
+System.Console.WriteLine();
+}
+
+double[] Reverse(double[] array)
+{
+for (int i = 0; i < array.Length / 2; i++)
+{
+double tmp = array[i];
+array[i] = array[array.Length - 1 - i];
+array[array.Length - 1 - i] = tmp;
+}
+
+return array;
+}
+
+int len = ReadInt("Количество элементов массива = ");
+int minRange = ReadInt("Минимальное значение элемента массива = ");
+int maxRange = ReadInt("Максимальное значение элемента массива = ");
+
+double[] array = GenerateArray(len, minRange, maxRange);  //заполнение массива
+PrintArrayDouble(array);			//печать массива через вызов функции печати
+PrintArrayDouble(Revers(array));	//печать массива с вызовом функции Revers прямо в ней
+
+
+Владимир Морозов: Напишите программу, которая принимает на вход три числа и проверяет, может ли существовать треугольник с сторонами такой длины.
+
+
+Стас Луковский: // // Напишите программу, которая принимает на вход три числа
+// и проверяет,может ли существовать треугольник с сторонами такой длины.
+
+int ReadInt(string message)
+{
+System.Console.Write(message);
+return Convert.ToInt32(Console.ReadLine());
+}
+
+int storonaA = ReadInt($"Введите сторону А ");
+int storonaB = ReadInt($"Введите сторону Б ");
+int storonaС = ReadInt($"Введите сторону C ");
+string text = " Не может существовать";
+
+if (storonaA < storonaB + storonaС)
+{
+if (storonaB < storonaA + storonaС)
+{
+if (storonaС < storonaB + storonaA)
+{
+text = ($"Может существовать ");
+}
+
+}
+
+}
+System.Console.WriteLine(text);
+
+
+// Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+// 45 -> 101101
+// 3 -> 11
+// 2 -> 10
+int ReadInt(string message)
+{
+System.Console.Write(message);
+return Convert.ToInt32(Console.ReadLine());
+}
+int[] Binary(int number)
+{
+int[] array = new int[10];
+for (int i = array.Length - 1; i >= 0; i--)
+{
+array[i] = number % 2;
+number = number / 2;
+}
+return array;
+}
+void PrintArray(int[] array)
+{
+for (int i = 0; i < array.Length; i++)
+{
+System.Console.Write(array[i] + " ");
+}
+System.Console.WriteLine();
+}
+int number = ReadInt($" Введите число ");
+int [] massive = Binary(number);
+PrintArray (massive);
+
+
+
+Владимир Морозов: Не используя рекурсию, выведите первые N чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.
+Если N = 5 -> 0 1 1 2 3
+Если N = 3 -> 0 1 1
+Если N = 7 -> 0 1 1 2 3 5 8
+
+
+Suren: // Не используя рекурсию, выведите первые N чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.
+// Если N = 5 -> 0 1 1 2 3
+// Если N = 3 -> 0 1 1
+// Если N = 7 -> 0 1 1 2 3 5 8
+
+int ReadInt(string message)
+{
+System.Console.Write(message + " ");
+return Convert.ToInt32(Console.ReadLine());
+}
+
+
+void PrintArray(int[] array)
+{
+for (int i = 0; i < array.Length; i++)
+{
+System.Console.Write(array[i] + " ");
+}
+System.Console.WriteLine();
+}
+
+
+int[] Fibonachi (int something)
+{
+
+if (something <= 1 )
+{
+return new int[1];
+}
+
+
+
+int[] array = new int[something];
+array[0] = 0;
+array[1] = 1;
+
+for (int i = 2; i<array.Length; i++)
+{
+array[i] = array[i-1]+array[i-2];
+}
+
+return array;
+
+}
+
+int number = ReadInt("Введите число");
+PrintArray(Fibonachi(number));
+
+
+
+
+Владимир Морозов: Напишите программу, которая будет создавать копию заданного массива с помощью поэлементного копирования.
+
+
+Стас Луковский: // Напишите программу, которая будет создавать копию заданного массива
+// с помощью поэлементного копирования.
+
+int ReadInt(string message)
+{
+System.Console.Write(message + " ");
+return Convert.ToInt32(Console.ReadLine());
+}
+
+
+void PrintArray(int[] array)
+{
+for (int i = 0; i < array.Length; i++)
+{
+System.Console.Write(array[i] + " ");
+}
+System.Console.WriteLine();
+}
+
+
+int[] Fibonachi(int something)
+{
+
+if (something <= 1)
+{
+return new int[1];
+}
+
+
+
+int[] array = new int[something];
+array[0] = 0;
+array[1] = 1;
+
+for (int i = 2; i < array.Length; i++)
+{
+array[i] = array[i - 1] + array[i - 2];
+}
+
+return array;
+}
+int[] Copy(int[] massive)
+{
+int[] copyArray = new int[massive.Length];
+for (int i = 0; i < massive.Length; i++)
+{
+copyArray[i] = massive[i];
+}
+return copyArray;
+}
+int[] origin = new int[] { 0, 1, 2, 3 };
+int[] array = origin;
+origin[0] = 100;
+PrintArray(origin);
+PrintArray(array);
+int[] copired = CopyArray (origin);
+origin[1] = 200;
+PrintArray(origin);
+PrintArray(array);
+PrintArray(copired);
+
